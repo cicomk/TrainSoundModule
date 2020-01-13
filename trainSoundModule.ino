@@ -13,7 +13,7 @@ DFRobotDFPlayerMini player;
 
 void setup() {
 
-  Serial.begin(9600);
+  Serial.begin(11520);
 
   softwareSerial.begin(9600);
 
