@@ -1,5 +1,9 @@
+//#include <IRremote.h>
+//#include <IRremoteInt.h>
+
 #include "SoftwareSerial.h"
 #include "DFRobotDFPlayerMini.h"
+
 
 float voltage = 0;
 unsigned long count;
@@ -13,16 +17,16 @@ DFRobotDFPlayerMini player;
 
 void setup() {
 
-  Serial.begin(11520);
+Serial.begin(115200);
 
   softwareSerial.begin(9600);
 
   if (player.begin(softwareSerial)) {
-    Serial.println("OK");
+    //Serial.println("OK");
 
-    player.volume(15);
+    player.volume(5);
 
-    player.play(1);
+    
 
   } else {
     Serial.println("Hiba");
@@ -32,11 +36,17 @@ void setup() {
 void loop() {
 voltage = (((analogRead(A0)) * (5.0 / 1023.0))*5.0);
 Serial.println(voltage);
-  if ((player.readState()) == 512) {
-    if (check == 0) {
+//if ((player.readState()) == 512) {
+    /*if (check == 0) {
       check = 1;
       count = millis();
-    }
+    }*/
+   if(voltage>4.00){
+delay(map(voltage, 4.00, 14.00, 1500, 300));
 
+player.play(1);
+Serial.println(map(voltage, 4.00, 14.00, 1500, 300));
+ // }
   }
+  
 }
