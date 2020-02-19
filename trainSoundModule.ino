@@ -34,6 +34,11 @@ Serial.begin(115200);
 }
 
 void loop() {
+
+  if ((analogRead(A1))== HIGH){
+    player.play(2);  //kürt
+  }
+  
 voltage = (((analogRead(A0)) * (5.0 / 1023.0))*5.0);
 Serial.println(voltage);
 //if ((player.readState()) == 512) {
